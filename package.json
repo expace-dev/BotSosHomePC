@@ -1,0 +1,28 @@
+{
+  "name": "botsoshomepc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.25",
+    "better-sqlite3": "^8.3.0",
+    "chalk": "^4.1.2",
+    "dayjs": "^1.11.7",
+    "discord-canvas-easy": "^3.2.1",
+    "discord-pagination-advanced": "^1.1.8",
+    "discord.js": "^14.9.0",
+    "dotenv": "^16.0.3",
+    "filltext-for-twemoji": "^1.0.0",
+    "fs": "^0.0.1-security",
+    "mongoose": "^7.0.3",
+    "ms": "^2.1.3",
+    "mysql": "^2.18.1",
+    "quick.db": "^9.1.6"
+  }
+}

@@ -1,0 +1,4 @@
+.env
+json.sqlite
+.vscode
+node_modules

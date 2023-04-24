@@ -12,6 +12,12 @@ module.exports = {
             const mots = ['aide', 'aides', 'expliquer', 'explication', 'explications'];
 
             if (
+                message.member.roles.cache.has(process.env.ROLE_ADMIN) || 
+                message.member.roles.cache.has(process.env.ROLE_TECH) ||
+                message.member.roles.cache.has(process.env.ROLE_MODO)
+                ) return;
+
+            if (
                 message.content.includes('aide') ||
                 message.content.includes('expliquer') ||
                 message.content.includes('explication') ||

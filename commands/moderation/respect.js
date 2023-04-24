@@ -5,7 +5,7 @@ module.exports = {
     category: "utilitaires",
     usage: "/respect <utilisateur>",
     examples: ["/respect <@utilisateur>"],
-    permissions: PermissionsBitField.Flags.SendMessages,
+    permissions: PermissionsBitField.Flags.ManageMessages,
     description: "Permet de notifier un utilisateur pour manque de respect",
     options: [
         {

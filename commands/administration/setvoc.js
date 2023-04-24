@@ -25,7 +25,7 @@ module.exports = {
                 const guild = interaction.guild;
                 await guild.channels.create({
                     type: ChannelType.GuildCategory,
-                    name: `VOCAL`,
+                    name: `Assistance`,
                     permissionOverwrites: [
                         {
                             id: guild.roles.everyone,
@@ -43,7 +43,7 @@ module.exports = {
 
                     guild.channels.create({
                         type: ChannelType.GuildVoice,
-                        name: `Créer ta vocale`,
+                        name: `➕ Créer votre salon`,
                         parent: NewCategory
                     }).then(channel => {
                         db.query(`SELECT * FROM privatevoc WHERE guildID = '${interaction.guild.id}'`, async (err, req) => {

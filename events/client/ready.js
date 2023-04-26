@@ -1,6 +1,6 @@
 const Logger = require('../../utils/Logger');
 const dotenv = require('dotenv'); dotenv.config();
-const databaseUtil = require('../../utils/handlers/databaseUtil');
+const databaseUtil = require('../../utils/handlers/DatabaseUtil');
 
 
 module.exports = {

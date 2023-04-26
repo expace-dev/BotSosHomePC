@@ -62,11 +62,16 @@ module.exports = {
         const raison = interaction.options.getString('raison');
         const duree = interaction.options.getString('duree');
         const convertedTime = ms(duree);
-
+        const db = client.db;
+        
         if (!membre.moderatable) return interaction.reply("Ce membre ne peut pas être mute  par le bot!");
         if (!convertedTime) return interaction.reply({ content: 'Spécifier une durée valable', ephemeral: true});
 
         membre.timeout(convertedTime, raison);
+
+        const date = Date.now();
+
+        db.query(`INSERT INTO sanctions (type, utilisateur, raison, date) VALUES ("mute", "${membre.id}", "${raison}", "${date}")`);
 
         interaction.reply({ content: `Le membre ${membre} a été mute pour une durée de ${duree}!`, ephemeral: true });
 

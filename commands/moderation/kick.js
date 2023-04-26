@@ -26,10 +26,15 @@ module.exports = {
 
         const membre = interaction.options.getMember('membre');
         const raison = interaction.options.getString('raison');
+        const db = client.db;
 
         if (!membre.kickable) return interaction.reply({ content: 'Je ne peux pas expusler ce membre!', ephemeral: true });
 
         membre.kick({raison});
+
+        const date = Date.now();
+
+        db.query(`INSERT INTO sanctions (type, utilisateur, raison, date) VALUES ("kick", "${membre.id}", "${raison}", "${date}")`);
 
         interaction.reply({ content: `Le membre ${membre} a été expulsé!`, ephemeral: true });
 

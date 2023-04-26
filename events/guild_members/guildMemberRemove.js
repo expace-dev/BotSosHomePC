@@ -1,12 +1,14 @@
 const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const dotenv = require('dotenv'); dotenv.config();
-const Canvas = require('@napi-rs/canvas');
+const { createCanvas, loadImage, GlobalFonts } = require('@napi-rs/canvas');
 const { request } = require('undici');
 
 module.exports = {
     name: 'guildMemberRemove',
     once: false,
     async execute(client, member) {
+
+		GlobalFonts.loadFontsFromDir('./assets/fonts');
 
         const start = Date.now();
 		const rejoignedAt = member.joinedTimestamp;
@@ -39,10 +41,10 @@ module.exports = {
 			duree = `${seconds} secondes`;
 		}
 
-        const canvas = Canvas.createCanvas(1000, 300);
+        const canvas = createCanvas(1000, 300);
 		const context = canvas.getContext('2d');
 
-        const background = await Canvas.loadImage('background.png');
+        const background = await loadImage('./assets/images/background.png');
 
         context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
@@ -67,7 +69,7 @@ module.exports = {
 		context.clip();
 
 		const { body } = await request(member.user.displayAvatarURL({ extension: 'jpg' }));
-		const avatar = await Canvas.loadImage(await body.arrayBuffer());
+		const avatar = await loadImage(await body.arrayBuffer());
 
 		context.drawImage(avatar, 25, 25, 250, 250);
 

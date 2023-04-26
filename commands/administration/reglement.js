@@ -1,7 +1,6 @@
 const { ActionRowBuilder, EmbedBuilder, ButtonBuilder, PermissionsBitField, ButtonStyle  } = require('discord.js');
 
 
-
 module.exports = {
     name: "reglement",
     usage: "/reglement",

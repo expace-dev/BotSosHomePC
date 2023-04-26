@@ -27,10 +27,15 @@ module.exports = {
 
         const membre = interaction.options.getMember('membre');
         const raison = interaction.options.getString('raison');
+        const db = client.db;
 
         if (!membre.bannable) return interaction.reply({ content: '❌ Je ne peux pas bloquer cet utilisateur!', ephemeral: true });
 
-        //interaction.guild.bans.create(membre.id, {reason: raison});
+        interaction.guild.bans.create(membre.id, {reason: raison});
+
+        const date = Date.now();
+
+        db.query(`INSERT INTO sanctions (type, utilisateur, raison, date) VALUES ("bann", "${membre.id}", "${raison}", "${date}")`);
 
         interaction.reply({ content: `Le membre ${membre} a été bloqué!`, ephemeral: true });
 

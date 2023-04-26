@@ -6,6 +6,7 @@ const Logger = require('../Logger');
 
 module.exports = async client => {
 
+    
     for (const folder of buttonFolders) {
         const buttonsPath = path.join(foldersPath, folder);
 	    const buttonFiles = fs.readdirSync(buttonsPath).filter(file => file.endsWith('.js'));

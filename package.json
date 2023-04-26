@@ -1,13 +1,13 @@
 {
   "name": "botsoshomepc",
-  "version": "1.0.1",
+  "version": "1.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Expace Development",
   "license": "ISC",
   "dependencies": {
     "@napi-rs/canvas": "^0.1.25",

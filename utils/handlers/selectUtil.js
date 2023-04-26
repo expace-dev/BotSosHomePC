@@ -14,6 +14,7 @@ module.exports = async client => {
 		    const select = require(filePath);
 
 
+            
             if (!select.name) return Logger.warn(`SelectMenu non chargé: ajouter un nom à votre selectMenu\n Fichier -> ${filePath}`);
 
                 client.selects.set(select.name, select);

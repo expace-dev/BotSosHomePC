@@ -1,8 +1,6 @@
 const { ApplicationCommandOptionType, EmbedBuilder, PermissionsBitField } = require('discord.js');
 const dotenv = require('dotenv'); dotenv.config();
 const Logger = require('../../utils/Logger');
-const { QuickDB } = require('quick.db');
-const db = new QuickDB();
 
 module.exports = {
     name: "unwarn",
@@ -22,21 +20,24 @@ module.exports = {
     async run(client, interaction) {
 
         const membre = interaction.options.getMember('membre');
+        const db = client.db;
 
         if (membre === interaction.member) return interaction.reply({ content: `❌ Vous n'avez même pas d'avertissement ! 🤣 🤣 🤣`, ephemeral: true });
 
-        if (membre.user.bot) return interaction.reply({ content: `❌ Je te rappelle que je nepeux pas me sanctionner ?? 🤣 🤣 🤣`, ephemeral: true });
+        if (membre.user.bot) return interaction.reply({ content: `❌ Je te rappelle que je ne peux pas me sanctionner ?? 🤣 🤣 🤣`, ephemeral: true });
 
-        let warnings = await db.get(`warnings_${interaction.guild.id}_${membre.id}`);
+        db.query(`SELECT COUNT(*) AS warnings FROM sanctions WHERE utilisateur='${membre.id}'`, async (error, results, fields) => {
+            const warnings = results[0].warnings;
 
-        if (warnings === null) {
-            return interaction.reply({ content: `❌ L'utilisateur ${membre} n'as aucun avertissement !!`, ephemeral: true });
-        }
+            if (warnings === 0) {
+                return interaction.reply({ content: `❌ L'utilisateur ${membre} n'as aucun avertissement !!`, ephemeral: true });
+            }
+            else {
+                db.query(`DELETE FROM sanctions WHERE utilisateur="${membre.id}" AND type="warnings"`);
+                return interaction.reply({ content: `Je viens de supprimer les avertissements de l'utilisateur ${membre}`, ephemeral:true });
+            }
+        });
 
-        await db.delete(`warnings_${interaction.guild.id}_${membre.id}`);
-        await db.delete(`warnings_${interaction.guild.id}_${membre.id}_list`);
-
-        return interaction.reply({ content: `Je viens de supprimer les avertissements de l'utilisateur ${membre}`, ephemeral:true });
 
     }
 }

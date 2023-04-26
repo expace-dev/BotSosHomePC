@@ -4,6 +4,7 @@ const foldersPath = path.join(__dirname, '../../events');
 const commandFolders = fs.readdirSync(foldersPath);
 const Logger = require('../Logger');
 
+
 module.exports = async client => {
 
     for (const folder of commandFolders) {

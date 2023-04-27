@@ -1,4 +1,4 @@
-import { EmbedBuilder, PermissionsBitField, AttachmentBuilder, time  } from "discord.js";
+const { EmbedBuilder, PermissionsBitField, AttachmentBuilder, time  } = require('discord.js');
 const { createCanvas, loadImage, GlobalFonts } = require('@napi-rs/canvas');
 const { request } = require('undici');
 
